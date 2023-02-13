@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <limits.h>
 
-#define BITFIELD_BIT CHAR_BIT
 #define to_abs_index(i) (i.byte_index * BITFIELD_BIT + i.bit_index)
 
-typedef unsigned char bitfield_data;
+typedef unsigned int bitfield_data;
+const int BITFIELD_BIT = CHAR_BIT * sizeof(bitfield_data);
 
 typedef struct {
     int byte_index;
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    for (size_t i = 0; i < bitfield_len; i++) {
+    for (int i = 0; i < bitfield_len; i++) {
         primes_bitfield[i] = ~0;
     }
 
